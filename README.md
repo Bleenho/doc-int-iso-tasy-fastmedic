@@ -2,9 +2,9 @@
 
 ## Visão Geral
 
-O sistema foi desenvolvido para o Hospital Iso Olhos com o objetivo de integrar os procedimentos realizados em cada laudo médico com o sistema FastMedic. Ele é composto por três aplicações desenvolvidas em Python3: **PreparaLaudo**, **PainelIntegração** e **Motor**. A seguir, apresentamos uma visão detalhada de cada uma dessas aplicações e suas funcionalidades.
+O sistema foi desenvolvido para o Hospital Iso Olhos com o objetivo de integrar os procedimentos realizados em cada procedimento médico com o sistema FastMedic. Ele é composto por três aplicações desenvolvidas em Python3: **PreparaLaudo**, **PainelIntegração** e **MotorIntegracao**. A seguir, apresentamos uma visão detalhada de cada uma dessas aplicações e suas funcionalidades.
 
-## Principais Funcionalidades
+## Principais Funcionalidades 
 
 O sistema realiza as seguintes operações:
 - **Criação do Laudo**: Integração inicial dos laudos médicos com o sistema FastMedic.
@@ -32,7 +32,7 @@ A aplicação **PainelIntegração** possui uma interface gráfica que permite a
 - **Exibição de Dados das Integrações**: Mostra detalhes das integrações, incluindo o XML enviado para o FastMedic, possíveis erros retornados pelo FastMedic e informações detalhadas dos procedimentos.
 - **Reprocessamento de Integrações**: Caso uma integração falhe, o usuário pode selecionar a integração da lista e clicar em "Reprocessar". Isso salva a integração na base de dados do integrador para que seja reprocessada.
 
-### 3. Motor
+### 3. MotorIntegração
 
 A aplicação **Motor** é o núcleo do sistema de integração, automatizando diversas etapas do processo. Suas principais responsabilidades incluem:
 
@@ -41,6 +41,20 @@ A aplicação **Motor** é o núcleo do sistema de integração, automatizando d
 - **Verificação de Guias de Remessa**: O Motor verifica, por meio de guias de remessa, se o processamento dos procedimentos pelo FastMedic foi bem-sucedido.
 - **Envio de Anexos**: Utilizando o repositório de laudos preenchido pelo PreparaLaudo, o Motor envia os anexos dos laudos para o FastMedic.
 - **Consulta de Autorização**: O Motor aguarda a autorização dos procedimentos e, ao receber a autorização, atualiza o sistema TASY com essa informação, garantindo que os dados dos atendimentos e procedimentos estejam sempre atualizados.
+
+## 4. Gerar Aplicações
+
+### Tecnologias Utilizadas
+- Python
+- pyInstaller
+- tkcalendar
+- tkinter
+- pymupdf
+- schedule
+- Docker
+
+### Geração de aplicacoes
+
 
 ## Conclusão
 

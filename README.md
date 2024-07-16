@@ -39,21 +39,40 @@ A aplicação **Motor** é o núcleo do sistema de integração, automatizando d
 - **Consulta de Dados no TASY**: O Motor consulta a base de dados do TASY para obter informações detalhadas dos procedimentos realizados por atendimento.
 - **Envio em Lote para o FastMedic**: Os dados dos procedimentos são enviados em lote para o FastMedic.
 - **Verificação de Guias de Remessa**: O Motor verifica, por meio de guias de remessa, se o processamento dos procedimentos pelo FastMedic foi bem-sucedido.
-- **Envio de Anexos**: Utilizando o repositório de laudos preenchido pelo PreparaLaudo, o Motor envia os anexos dos laudos para o FastMedic.
+- **Atualiza procedimentos nao criados**: Em caso a fastmedic rejeite o envio por alguma falta de informação ou algum dado que nao foi enviado pois não foi encontrado no TASY, então salva na base do integrador sinalizando que algum ajuste seja necessário e realizar o reenvio.
+- **Envio de Anexos**: Para caso de sucesso as guias de remessa então utilizando o repositório de laudos preenchido pelo PreparaLaudo, o Motor envia os anexos dos laudos para o FastMedic.
 - **Consulta de Autorização**: O Motor aguarda a autorização dos procedimentos e, ao receber a autorização, atualiza o sistema TASY com essa informação, garantindo que os dados dos atendimentos e procedimentos estejam sempre atualizados.
 
 ## 4. Gerar Aplicações
 
 ### Tecnologias Utilizadas
 - Python
-- pyInstaller
-- tkcalendar
-- tkinter
-- pymupdf
-- schedule
+- Pip install pyInstaller, tkcalendar, tkinter, pymupdf, schedule
 - Docker
 
 ### Geração de aplicacoes
+
+#### Painel e Prepara laudo (Windonws)
+
+Em uma máquina padrao windowns da iso olhos, verificar python e pip install necessários estao instalados e para cada aplicação realizar seguintes comandos:
+
+`pyinstaller --noconsole --onefile --hidden-import=babel.numbers PainelIntegracao.py`
+
+`pyinstaller --noconsole --onefile PrepararLaudo.py`
+
+Dentro da pasta `/dist` foi gerado PainelIntegracao.exe e o PrepararLaudo.exe 
+
+> **Atenção:** Para funcionar a execução, ambos necessitam do arquivo config.json no mesmo diretório da aplicação executavel(painel ou prepara)
+
+
+#### Motor Integraçao (Linux Ubuntu 20)
+
+Em um linux Ubuntu realizar a instalação do Docker e realizar os seguintes comandos no projeto:
+
+Dentro da pasta app/ `./build_motorintegracao.sh (Versao)5.35` isso irá realizar a construão do aplicativo e tentar enviar para o servidor da iso solicitando a senha
+
+
+> **Atenção:** Para realizar o deploy do motor é necessário estar conectar na VPN e possuir a senha ssh do usuario root, Para não dar erro é necessário parar o servidor antes de realizar o procedimento `sudo systemctl stop motor`
 
 
 ## Conclusão
